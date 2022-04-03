@@ -15,13 +15,14 @@ const useStyles = createUseStyles({
         padding: 20,
         width: 300,
         height: 'min-content',
+        minWidth: 350,
         borderRadius: theme.border.radius,
         boxShadow: '0 0 6px 2px rbga(0,0,0,0.6)'
     },
     form: {
         display: 'flex',
         flexDirection: 'column',
-
+        gap: 20
     },
     login: {
         color: 'white',
@@ -48,7 +49,6 @@ const useStyles = createUseStyles({
         width: '100%',
         height: '2px',
         backgroundColor: theme.colors.background,
-        margin: '20px auto'
     },
     newAccount: {
         color: 'white',
@@ -62,6 +62,13 @@ const useStyles = createUseStyles({
         '&:hover': {
             backgroundColor: Color(theme.colors.secondary).darken(0.1).hex()
         }
+    },
+    swalPopup: {
+        padding: 0
+    },
+    swalHtml: {
+        margin: 0,
+        padding: 20
     }
 });
 const LoginForm: React.FC<{}> = props => {
@@ -70,8 +77,12 @@ const LoginForm: React.FC<{}> = props => {
 
     const signupClick = () => {
         SignupModal.fire({
-            title: 'Teste',
-            html: <Signup />
+            html: <Signup />,
+            showConfirmButton: false,
+            customClass: {
+                popup: styles.swalPopup,
+                htmlContainer: styles.swalHtml
+            }
         });
     }
 
@@ -80,8 +91,10 @@ const LoginForm: React.FC<{}> = props => {
             <form className={styles.form}>
                 <input type='text' placeholder='E-mail, usuário ou telefone' />
                 <input type='password' placeholder='Senha' />
-                <Button text='Entrar' className={styles.login} />
-                <a className={styles.link} href="google.com.br">Esqueci a senha</a>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                    <Button text='Entrar' className={styles.login} />
+                    <a className={styles.link} href="google.com.br">Esqueci a senha</a>
+                </div>
                 
                 <span className={styles.separator}></span>
                 <Button className={styles.newAccount} text='Criar conta' onClick={signupClick}/>

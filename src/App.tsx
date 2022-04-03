@@ -8,6 +8,9 @@ import Home from './screens/Home';
 
 const styles = {
   '@global': {
+    '*': {
+      boxSizing: 'border-box'
+    },
     input: {
       padding: 10,
       fontSize: '1rem',
@@ -15,7 +18,6 @@ const styles = {
       borderWidth: theme.border.width,
       borderStyle: 'solid',
       borderColor: theme.border.color,
-      marginBottom: 15,
       transition: 'all 200ms ease',
       outlineColor: theme.border.color,
       '&:focus-within': {

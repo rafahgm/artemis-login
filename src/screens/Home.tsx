@@ -13,7 +13,7 @@ const useStyles = createUseStyles((theme: CustomTheme) => ({
         display: 'flex',
         margin: '0 auto',
         maxWidth: 1000,
-        padding: '0 20px',
+        padding: '0 40px',
         height: '100vh',
         alignItems: 'center'        
     },
