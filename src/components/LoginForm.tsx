@@ -1,13 +1,17 @@
 import React from 'react';
 import { createUseStyles, useTheme } from 'react-jss';
 import Color from 'color';
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import theme from '../theme';
+import Signup from './Signup';
+import Button from './Button';
+
+const SignupModal = withReactContent(Swal);
 
 const useStyles = createUseStyles({
     container: {
         backgroundColor: 'white',
-        marginLeft: 'auto',
         padding: 20,
         width: 300,
         height: 'min-content',
@@ -18,22 +22,6 @@ const useStyles = createUseStyles({
         display: 'flex',
         flexDirection: 'column',
 
-    },
-    input: {
-        padding: 10,
-        fontSize: '1rem',
-        borderRadius: theme.border.radius,
-        borderWidth: theme.border.width,
-        borderStyle: 'solid',
-        borderColor: theme.border.color,
-        marginBottom: 15,
-        transition: 'all 200ms ease',
-        outlineColor: theme.border.color,
-        '&:focus-within': {
-            outlineColor: theme.colors.primary,
-            outlineStyle: 'solid',
-            boxShadow: '0 0 4px 2px ' + Color(theme.colors.primary).alpha(0.2).hexa()
-        } 
     },
     login: {
         color: 'white',
@@ -52,7 +40,8 @@ const useStyles = createUseStyles({
     link: {
         color: theme.colors.secondary,
         textDecoration: 'none',
-        textAlign: 'center'
+        textAlign: 'center',
+        marginTop: '5px'
     },
     separator: {
         display: 'block',
@@ -79,16 +68,23 @@ const LoginForm: React.FC<{}> = props => {
     const theme = useTheme<CustomTheme>();
     const styles = useStyles({ theme });
 
+    const signupClick = () => {
+        SignupModal.fire({
+            title: 'Teste',
+            html: <Signup />
+        });
+    }
+
     return (
         <div className={styles.container}>
             <form className={styles.form}>
-                <input className={styles.input} type='text' placeholder='E-mail, usuário ou telefone' />
-                <input className={styles.input} type='password' placeholder='Senha' />
-                <button className={styles.login}>Entrar</button>
-                <a className={styles.link} href="#">Esqueci a senha</a>
+                <input type='text' placeholder='E-mail, usuário ou telefone' />
+                <input type='password' placeholder='Senha' />
+                <Button text='Entrar' className={styles.login} />
+                <a className={styles.link} href="google.com.br">Esqueci a senha</a>
                 
                 <span className={styles.separator}></span>
-                <button className={styles.newAccount}>Criar nova conta</button>
+                <Button className={styles.newAccount} text='Criar conta' onClick={signupClick}/>
             </form>
         </div>
     )
