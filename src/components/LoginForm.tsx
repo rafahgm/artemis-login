@@ -79,6 +79,7 @@ const LoginForm: React.FC<{}> = props => {
         SignupModal.fire({
             html: <Signup />,
             showConfirmButton: false,
+            allowOutsideClick: false,
             customClass: {
                 popup: styles.swalPopup,
                 htmlContainer: styles.swalHtml

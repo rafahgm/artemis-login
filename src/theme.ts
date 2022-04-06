@@ -5,6 +5,7 @@ const theme : CustomTheme = {
         danger: '#E56B6F',
         warning: '#FFE45E',
         black: '#0D160B',
+        green: '#4CE0B3',
         background: '#f0f2f5'
     },
     border: {
